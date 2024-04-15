@@ -4,7 +4,7 @@
   <div class="flex md:w-1/2 flex-col p-5 md:p-10 bg-slate-100 border mt-10 rounded-xl border-slate-400 w-full" >
     <input [(ngModel)]="email" class="p-3 border border-slate-300 rounded-xl w-full mb-3" placeholder="Email">
     <input [(ngModel)]="password" class="p-3 border border-slate-300 rounded-xl w-full mb-3" placeholder="Password">
-    <button  (click)="onLogIn()" class="p-3 border bg-red-400 text-white hover:bg-black transition-all border-slate-300 rounded-xl w-full disabled:bg-red-200 " [disabled]="email == '' || password == ''" >Login</button>
+    <button  (click)="onLogIn()" class="p-3 border bg-red-400 text-white hover:bg-black transition-all border-slate-300 rounded-xl w-full disabled:bg-red-200 " [disabled]="email == '' || password == ''" >{{message}}</button>
     <a href="/create/account" class="p-5 text-slate-800 hover:text-blue-600  text-center">Don't have an account? <strong>Click here to create one!</strong></a>
   </div>
 </div>
