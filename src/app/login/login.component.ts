@@ -34,7 +34,7 @@ export class LoginComponent {
       map((res) => {
         this.message = res.message;
         this.auth.setAuthToken(res.token);
-        // this.router.navigate(["/user"]);
+        this.router.navigate(["/user"]);
 
       }),
 
