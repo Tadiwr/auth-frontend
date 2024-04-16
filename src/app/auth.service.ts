@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
 
@@ -17,7 +17,7 @@ export class AuthService {
     return this.http.post<AuthRes>(req_url, creds, {
       headers : {
         "Accept" : "application/json",
-        "Content-Type" : "application/json"
+        "Content-Type" : "application/json",
       }
     })
   }
@@ -34,6 +34,19 @@ export class AuthService {
     this.cookies.delete("auth_token");
   }
 
+  public getAuthUser() {
+    const token : string = this.getAuthToken();
+    const req_url = `http://localhost:8080/api/getUserInfo`;
+
+    return this.http.get<AuthUser>(req_url, {
+      responseType : "json",
+      headers : {
+        "Authorization" : `Bearer ${token}`
+      }
+    });
+
+  }
+
 }
 
 export type LoginCreds = {
@@ -44,4 +57,9 @@ export type LoginCreds = {
 export type AuthRes = {
   token : string,
   message : string
+}
+
+export type AuthUser = {
+  email : string,
+  name : string
 }
