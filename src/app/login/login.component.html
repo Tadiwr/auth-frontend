@@ -2,9 +2,12 @@
   <h1 class="text-5xl font-bold" >Login</h1>
 
   <div class="flex md:w-1/2 flex-col p-5 md:p-10 bg-slate-100 border mt-10 rounded-xl border-slate-400 w-full" >
-    <input [(ngModel)]="email" class="p-3 border border-slate-300 rounded-xl w-full mb-3" placeholder="Email">
-    <input [(ngModel)]="password" class="p-3 border border-slate-300 rounded-xl w-full mb-3" placeholder="Password">
-    <button  (click)="onLogIn()" class="p-3 border bg-red-400 text-white hover:bg-black transition-all border-slate-300 rounded-xl w-full disabled:bg-red-200 " [disabled]="email == '' || password == ''" >{{message}}</button>
+    <input [(ngModel)]="email" class="p-3 border border-slate-300 rounded-xl w-full mb-3" placeholder="Email" type="email" >
+    @if(!checkEmail(email) && !(email == "")) {
+      <label class="bg-red-50 rounded-xl mb-3 text-red-500 p-2 w-full text-start border border-red-300" >Enter Valid Email</label>
+    }
+    <input [(ngModel)]="password" class="p-3 border border-slate-300 rounded-xl w-full mb-3" placeholder="Password" type="password">
+    <button  (click)="onLogIn()" class="p-3 border bg-red-400 text-white hover:bg-black transition-all border-slate-300 rounded-xl w-full disabled:bg-red-200 " [disabled]="email == '' || password == '' || !checkEmail(email)" >{{message}}</button>
     <a href="/create/account" class="p-5 text-slate-800 hover:text-blue-600  text-center">Don't have an account? <strong>Click here to create one!</strong></a>
   </div>
 </div>

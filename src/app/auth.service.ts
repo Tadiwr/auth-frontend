@@ -22,6 +22,17 @@ export class AuthService {
     })
   }
 
+  createAcccount(creds : CreateAccountCreds) {
+    const req_url = `${this.base_url}/create/account`;
+
+    return this.http.post<AuthRes>(req_url, creds, {
+      headers : {
+        "Accept" : "application/json",
+        "Content-Type" : "application/json",
+      }
+    });
+  }
+
   public setAuthToken(token : string) {
     this.cookies.set("auth_token", token);
   }
@@ -62,4 +73,10 @@ export type AuthRes = {
 export type AuthUser = {
   email : string,
   name : string
+}
+
+export type CreateAccountCreds = {
+  email : string,
+  name : string,
+  password : string
 }
